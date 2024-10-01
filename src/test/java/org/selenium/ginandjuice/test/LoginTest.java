@@ -13,9 +13,25 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void testValidarLoginDadosValidos() {
-        LoginDto user = LoginData.validLogin();
+        LoginDto user = LoginData.validoLogin();
 
-        String message = loginPage.loginAccount(user);
+        String message = loginPage.loginSucesso(user);
         validation.validateText("MY ACCOUNT", message);
+    }
+
+    @Test
+    public void testTentarRealizarLoginComUsernameInvalido() {
+        LoginDto user = LoginData.invalidoUsernameLogin();
+
+        String message = loginPage.loginUsernameInvalido(user);
+        validation.validateText("Invalid username or password.", message);
+    }
+
+    @Test
+    public void testTentarRealizarLoginComSenhaInvalida() {
+        LoginDto user = LoginData.invalidoSenhaLogin();
+
+        String message = loginPage.loginUsernameInvalido(user);
+        validation.validateText("Invalid username or password.", message);
     }
 }
